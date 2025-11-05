@@ -1,17 +1,26 @@
-import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Tabs } from "expo-router";
 import React from "react";
 
 import { useColorScheme } from "@/components/useColorScheme";
-import Colors from "@/constants/Colors";
+import { colors } from "@/src/styles/colors";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
+const tabScreens: {
+  name: string;
+  headerTitle: string;
+  icon: string;
+  header?: boolean;
+}[] = [
+  { name: "home/index", headerTitle: "Home", icon: "home" },
+  {
+    name: "news/index",
+    headerTitle: "Content",
+    icon: "newspaper-variant-outline",
+  },
+  { name: "services/index", headerTitle: "Services", icon: "cog-outline" },
+  { name: "emergency/index", headerTitle: "Emergency", icon: "calendar" },
+  { name: "account/index", headerTitle: "Account", icon: "account" },
+];
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -19,24 +28,30 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: colors.white,
+        tabBarActiveBackgroundColor: colors.azure,
+        tabBarStyle: {
+          borderTopWidth: 0,
+          elevation: 0,
+        },
         headerShown: false,
       }}
     >
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: "Tab One",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
-      <Tabs.Screen
-        name="home/index"
-        options={{
-          title: "Home",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
-        }}
-      />
+      {tabScreens.map((tabScreen) => (
+        <Tabs.Screen
+          name={tabScreen.name}
+          options={{
+            title: tabScreen.headerTitle,
+            tabBarIcon: ({ focused, color }) => (
+              <MaterialCommunityIcons
+                name={tabScreen.icon as any}
+                size={30}
+                color={focused ? colors.white : colors.royalBlue}
+              />
+            ),
+          }}
+        />
+      ))}
     </Tabs>
   );
 }
