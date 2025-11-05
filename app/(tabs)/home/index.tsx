@@ -159,17 +159,26 @@ export default function Home() {
           </View>
         </View>
 
-        <Text
-          style={[
-            styles.textTitle,
-            {
-              fontSize: typography.title,
-            },
-          ]}
+        <View
+          style={[styles.xFlex, { flexDirection: "row", alignItems: "center" }]}
         >
-          <MaterialCommunityIcons name="cog-outline" size={typography.title} />
-          Services
-        </Text>
+          <MaterialCommunityIcons
+            name="cog-outline"
+            size={typography.title}
+            color={colors.royalBlue}
+          />
+          <Text
+            style={[
+              styles.textTitle,
+              {
+                fontSize: typography.title,
+              },
+            ]}
+          >
+            Services
+          </Text>
+        </View>
+
         <SegmentedButtons
           value={value}
           onValueChange={(e) => setValue(e)}
@@ -249,6 +258,26 @@ export default function Home() {
               />
             ))}
           </View>
+        </View>
+
+        <View
+          style={[styles.xFlex, { flexDirection: "row", alignItems: "center" }]}
+        >
+          <MaterialCommunityIcons
+            name="book-open-page-variant-outline"
+            size={typography.title}
+            color={colors.royalBlue}
+          />
+          <Text
+            style={[
+              styles.textTitle,
+              {
+                fontSize: typography.title,
+              },
+            ]}
+          >
+            Citizen Guide
+          </Text>
         </View>
       </View>
     </ScrollView>
