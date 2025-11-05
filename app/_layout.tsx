@@ -1,3 +1,4 @@
+import { AppHeader } from "@/src/components/Header";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
@@ -53,7 +54,7 @@ function RootLayoutNav() {
           <Stack>
             <Stack.Screen
               name="(tabs)"
-              options={{ headerShown: true, headerTitle: "asd" }}
+              options={{ headerShown: true, headerTitle: () => <AppHeader /> }}
             />
           </Stack>
         </PaperProvider>
