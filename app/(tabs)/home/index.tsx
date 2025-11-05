@@ -1,11 +1,12 @@
-import { NewsCard } from "@/src/components/Card";
+import { NewsCard, ServiceCard } from "@/src/components/Card";
 import { colors } from "@/src/styles/colors";
 import { roundness } from "@/src/styles/roundness";
 import { spacing } from "@/src/styles/spacing";
 import { typography } from "@/src/styles/typography";
+import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useState } from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { Button, Searchbar } from "react-native-paper";
+import { Button, Searchbar, SegmentedButtons } from "react-native-paper";
 
 const services = [
   { label: "Services", icon: "cog-outline" },
@@ -27,12 +28,71 @@ const news = [
     description: "City Transport Office 2hrs ago",
   },
   {
-    title: "Traffic advisory: Main Ave rerouting",
-    description: "City Transport Office 2hrs ago",
+    title: "Libreng Bakuna",
+    description: "Medical Office 2hrs ago",
+  },
+];
+
+const filterServices = [
+  {
+    title: "Business Permit",
+    icon: "purse-outline",
+    description: "Apply, renew, check status",
+    class: "permits",
+  },
+  {
+    title: "Property Tax",
+    icon: "hand-coin-outline",
+    description: "Assessment and payments",
+    class: "payment",
+  },
+  {
+    title: "Civil Registry",
+    icon: "account",
+    description: "Birth, marriage, death",
+    class: "health",
+  },
+  {
+    title: "Utilities",
+    icon: "tools",
+    description: "Water, power, support",
+    class: "payment",
+  },
+  {
+    title: "Health Services",
+    icon: "heart-pulse",
+    description: "Clinics, vaccines",
+    class: "health",
+  },
+  {
+    title: "Transport",
+    icon: "bus-side",
+    description: "Routes, passes",
+    class: "",
   },
 ];
 
 export default function Home() {
+  const buttons = [
+    {
+      value: "all",
+      label: "All",
+    },
+    {
+      value: "health",
+      label: "Health",
+    },
+    {
+      value: "permits",
+      label: "Permits",
+    },
+    {
+      value: "payment",
+      label: "Payments",
+    },
+  ];
+  const [filter, setFilter] = useState("all");
+  const [value, setValue] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   return (
     <ScrollView>
@@ -85,6 +145,98 @@ export default function Home() {
             ))}
           </View>
         </View>
+
+        <View style={[styles.card, styles.verticalFlex]}>
+          <Text style={styles.textTitle}>City News</Text>
+          <View style={styles.verticalFlex}>
+            {news.map((content, index) => (
+              <NewsCard
+                key={`${content.title}-${index}`}
+                title={content.title}
+                description={content.description}
+              />
+            ))}
+          </View>
+        </View>
+
+        <Text
+          style={[
+            styles.textTitle,
+            {
+              fontSize: typography.title,
+            },
+          ]}
+        >
+          <MaterialCommunityIcons name="cog-outline" size={typography.title} />
+          Services
+        </Text>
+        <SegmentedButtons
+          value={value}
+          onValueChange={(e) => setValue(e)}
+          style={{
+            borderRadius: 0,
+            borderWidth: 0,
+            elevation: 0,
+          }}
+          theme={{
+            roundness: 0,
+          }}
+          buttons={buttons.map((btn) => ({
+            ...btn,
+            onPress: () => {
+              setFilter(btn.value);
+            },
+            style: {
+              borderRadius: 0,
+              borderWidth: 0,
+              borderBottomWidth: btn.value === value ? 2 : 0,
+              borderBottomColor:
+                btn.value === value ? colors.royalBlue : "transparent",
+              backgroundColor: "transparent",
+            },
+            labelStyle: {
+              color: btn.value === value ? colors.royalBlue : "#000",
+              fontWeight: btn.value === value ? "bold" : "normal",
+            },
+          }))}
+        />
+        {filter === "all" ? (
+          <View
+            style={[
+              styles.xFlex,
+              {
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: spacing.sm,
+                justifyContent: "center",
+              },
+            ]}
+          >
+            {filterServices.map((fs, i) => (
+              <ServiceCard key={`${fs.title}-${i}`} {...fs} />
+            ))}
+          </View>
+        ) : (
+          <View
+            style={[
+              styles.xFlex,
+              {
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                gap: spacing.sm,
+                justifyContent: "center",
+              },
+            ]}
+          >
+            {filterServices
+              .filter((fs) => fs.class === filter)
+              .map((service, i) => (
+                <ServiceCard key={`${service.title}-${i}`} {...service} />
+              ))}
+          </View>
+        )}
 
         <View style={[styles.card, styles.verticalFlex]}>
           <Text style={styles.textTitle}>City News</Text>
@@ -152,9 +304,8 @@ const styles = StyleSheet.create({
   subtext: {
     fontWeight: "semibold",
   },
-  horizontalFlex: {
+  xFlex: {
     display: "flex",
-    flexDirection: "column",
     gap: spacing.xs,
   },
 
