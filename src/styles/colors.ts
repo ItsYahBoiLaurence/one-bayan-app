@@ -3,5 +3,7 @@ export const colors = {
     afWhite: "#F7f8fb",
     yellow: "#ffb803",
     royalBlue: "#022369",
-    white: "#ffffff"
+    white: "#ffffff",
+    black: "#000",
+    gray: "#abababff"
 }

@@ -1,11 +1,12 @@
 import { AppHeader } from "@/src/components/Header";
+import { colors } from "@/src/styles/colors";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { DefaultTheme, ThemeProvider } from "@react-navigation/native";
 import { useFonts } from "expo-font";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
-import { PaperProvider } from "react-native-paper";
+import { MD3LightTheme, PaperProvider } from "react-native-paper";
 import "react-native-reanimated";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
@@ -46,11 +47,19 @@ export default function RootLayout() {
   return <RootLayoutNav />;
 }
 
+const theme = {
+  ...MD3LightTheme,
+  colors: {
+    ...MD3LightTheme.colors,
+    primary: colors.royalBlue,
+  },
+};
+
 function RootLayoutNav() {
   return (
     <ThemeProvider value={DefaultTheme}>
       <SafeAreaProvider>
-        <PaperProvider>
+        <PaperProvider theme={theme}>
           <Stack>
             <Stack.Screen
               name="(tabs)"

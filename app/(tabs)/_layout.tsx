@@ -11,15 +11,19 @@ const tabScreens: {
   icon: string;
   header?: boolean;
 }[] = [
-  { name: "home/index", headerTitle: "Home", icon: "home" },
+  { name: "home/index", headerTitle: "Home", icon: "home-outline" },
   {
     name: "news/index",
     headerTitle: "Content",
     icon: "newspaper-variant-outline",
   },
   { name: "services/index", headerTitle: "Services", icon: "cog-outline" },
-  { name: "emergency/index", headerTitle: "Emergency", icon: "calendar" },
-  { name: "account/index", headerTitle: "Account", icon: "account" },
+  {
+    name: "emergency/index",
+    headerTitle: "Emergency",
+    icon: "alarm-light-outline",
+  },
+  { name: "account/index", headerTitle: "Account", icon: "account-outline" },
 ];
 
 export default function TabLayout() {
