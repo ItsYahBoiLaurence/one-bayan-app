@@ -1,4 +1,9 @@
-import { NewsCard, ServiceCard } from "@/src/components/Card";
+import {
+  EmergencyCard,
+  NewsCard,
+  ReportIssue,
+  ServiceCard,
+} from "@/src/components/Card";
 import { colors } from "@/src/styles/colors";
 import { roundness } from "@/src/styles/roundness";
 import { spacing } from "@/src/styles/spacing";
@@ -70,6 +75,34 @@ const filterServices = [
     description: "Routes, passes",
     class: "",
   },
+];
+
+const emergency = [
+  {
+    cardTitle: "Police",
+    buttonLabel: "Dial 911",
+    buttonIcon: "phone-outline",
+    cardIcon: "shield-alert-outline",
+  },
+  {
+    cardTitle: "Fire",
+    buttonLabel: "Dial 911",
+    buttonIcon: "phone-outline",
+    cardIcon: "fire",
+  },
+  {
+    cardTitle: "Hospitals",
+    buttonLabel: "Nearby",
+    buttonIcon: "phone-outline",
+    cardIcon: "hospital-building",
+  },
+];
+
+const issues = [
+  { title: "Uncollected Garbage", icon: "delete-outline" },
+  { title: "Broken Street Lights", icon: "lightbulb-outline" },
+  { title: "Road Damge/Potholes", icon: "road-variant" },
+  { title: "Flooding", icon: "waves" },
 ];
 
 export default function Home() {
@@ -247,6 +280,35 @@ export default function Home() {
           </View>
         )}
 
+        <View
+          style={[styles.xFlex, { flexDirection: "row", alignItems: "center" }]}
+        >
+          <MaterialCommunityIcons
+            name="alarm-light-outline"
+            size={typography.title}
+            color={colors.royalBlue}
+          />
+          <Text
+            style={[
+              styles.textTitle,
+              {
+                fontSize: typography.title,
+              },
+            ]}
+          >
+            Emergency
+          </Text>
+        </View>
+
+        <View style={[styles.verticalFlex]}>
+          {emergency.map((emergencyActions, i) => (
+            <EmergencyCard
+              {...emergencyActions}
+              key={`${emergencyActions.cardTitle}-${i}`}
+            />
+          ))}
+        </View>
+
         <View style={[styles.card, styles.verticalFlex]}>
           <Text style={styles.textTitle}>City News</Text>
           <View style={styles.verticalFlex}>
@@ -264,7 +326,7 @@ export default function Home() {
           style={[styles.xFlex, { flexDirection: "row", alignItems: "center" }]}
         >
           <MaterialCommunityIcons
-            name="book-open-page-variant-outline"
+            name="flag-variant-outline"
             size={typography.title}
             color={colors.royalBlue}
           />
@@ -276,8 +338,14 @@ export default function Home() {
               },
             ]}
           >
-            Citizen Guide
+            Report Issues
           </Text>
+        </View>
+
+        <View style={[styles.verticalFlex]}>
+          {issues.map((issue, i) => (
+            <ReportIssue {...issue} key={`${issue.title}-${i}`} />
+          ))}
         </View>
       </View>
     </ScrollView>
@@ -291,7 +359,7 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     display: "flex",
     flexDirection: "column",
-    gap: 20,
+    gap: spacing.md,
   },
   searchbarContainer: {
     elevation: 10,
@@ -307,7 +375,7 @@ const styles = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     flexWrap: "wrap",
-    gap: spacing.xs,
+    gap: spacing.sm,
     justifyContent: "center",
   },
   buttons: {
