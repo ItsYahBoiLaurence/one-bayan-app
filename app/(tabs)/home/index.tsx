@@ -309,19 +309,6 @@ export default function Home() {
           ))}
         </View>
 
-        <View style={[styles.card, styles.verticalFlex]}>
-          <Text style={styles.textTitle}>City News</Text>
-          <View style={styles.verticalFlex}>
-            {news.map((content, index) => (
-              <NewsCard
-                key={`${content.title}-${index}`}
-                title={content.title}
-                description={content.description}
-              />
-            ))}
-          </View>
-        </View>
-
         <View
           style={[styles.xFlex, { flexDirection: "row", alignItems: "center" }]}
         >

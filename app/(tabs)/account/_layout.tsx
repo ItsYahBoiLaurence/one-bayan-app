@@ -8,7 +8,7 @@ export default function AccountLayout() {
       }}
     >
       <Stack.Screen name="index" />
-      <Stack.Screen name="report-progress" />
+      <Stack.Screen name="reports/index" />
     </Stack>
   );
 }

@@ -10,7 +10,7 @@ const menu = [
   {
     title: "Report Progress",
     icon: "flag-variant-outline",
-    url: "/(tabs)/account/report-progress",
+    url: "/(tabs)/account/reports",
   },
   { title: "Service Request Progress", icon: "progress-wrench", url: "" },
   { title: "Preferences", icon: "cog-outline", url: "" },
