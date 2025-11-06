@@ -23,7 +23,7 @@ const tabScreens: {
     headerTitle: "Emergency",
     icon: "alarm-light-outline",
   },
-  { name: "account/index", headerTitle: "Account", icon: "account-outline" },
+  { name: "account", headerTitle: "Account", icon: "account-outline" },
 ];
 
 export default function TabLayout() {
