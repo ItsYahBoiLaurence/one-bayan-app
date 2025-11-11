@@ -5,7 +5,7 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { Pressable, Text, View } from "react-native";
 import { Card } from "react-native-paper";
 
-export default async function News() {
+export default function News() {
   return (
     <View style={[common.screenContainer]}>
       <View
