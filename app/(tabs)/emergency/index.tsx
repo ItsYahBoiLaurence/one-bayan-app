@@ -29,6 +29,11 @@ const hotlines: HotlineInformationType[] = [
         address: "Sampaguita St. Brgy. Pembo, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
+      {
+        name: "Makati Life Medical Center",
+        address: "Sampaguita St. Brgy. Pembo, Makati City, Metro Manila",
+        contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
+      },
     ],
   },
   {
@@ -36,13 +41,13 @@ const hotlines: HotlineInformationType[] = [
     icon: <EarthIcon />,
     details: [
       {
-        name: "Makati Medical Center",
+        name: "Makati City Central Fire Station (BFP)",
         address:
           "2 Amorsolo Street, Legazpi Village, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
       {
-        name: "Ospital ng Makati (Main)",
+        name: "Guadalupe Viejo Fire Substation",
         address: "Sampaguita St. Brgy. Pembo, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
@@ -53,13 +58,13 @@ const hotlines: HotlineInformationType[] = [
     icon: <PoliceIcon />,
     details: [
       {
-        name: "Makati Medical Center",
+        name: "Makati City Police Station (PNP)",
         address:
           "2 Amorsolo Street, Legazpi Village, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
       {
-        name: "Ospital ng Makati (Main)",
+        name: "Police Community Precinct 1 (PCP-1)",
         address: "Sampaguita St. Brgy. Pembo, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
@@ -70,13 +75,13 @@ const hotlines: HotlineInformationType[] = [
     icon: <FireIcon />,
     details: [
       {
-        name: "Makati Medical Center",
+        name: "Makati City Police Station (PNP)",
         address:
           "2 Amorsolo Street, Legazpi Village, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
       {
-        name: "Ospital ng Makati (Main)",
+        name: "Makati Rescue",
         address: "Sampaguita St. Brgy. Pembo, Makati City, Metro Manila",
         contact: [{ number: "(02) 8882-6316" }, { number: "(02) 8882-6317" }],
       },
@@ -133,7 +138,7 @@ export default function Emergency() {
             >
               <Text style={[styles.modalTitle]}>{activeHotline.label}</Text>
               {activeHotline.details.map((detail, i) => (
-                <View style={[common.verticalFlex]}>
+                <View style={[common.verticalFlex]} key={`${detail.name}-${i}`}>
                   <View>
                     <Text style={[styles.modalItemTitle]}>{detail.name}</Text>
                     <Text>
@@ -224,7 +229,7 @@ const styles = StyleSheet.create({
   modalPhoneNoContainer: {
     backgroundColor: "white",
     borderRadius: roundness.xl,
-    paddingVertical: spacing.sm,
+    paddingVertical: spacing.xs,
     paddingHorizontal: spacing.md,
     elevation: 1,
     justifyContent: "space-between",
@@ -232,7 +237,7 @@ const styles = StyleSheet.create({
   },
 
   modalPhoneText: {
-    fontSize: typography.subtitle,
+    fontSize: typography.body,
     color: colors.gray,
   },
   modalPhoneButton: {
