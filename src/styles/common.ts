@@ -1,5 +1,6 @@
 import { StyleSheet } from "react-native";
 import { colors } from "./colors";
+import { roundness } from "./roundness";
 import { spacing } from "./spacing";
 import { typography } from "./typography";
 
@@ -31,5 +32,11 @@ export const common = StyleSheet.create({
         display: "flex",
         flexDirection: "column",
         gap: spacing.md
+    },
+    cardStyleContainer: {
+        elevation: 1,
+        padding: spacing.md,
+        borderRadius: roundness.md,
+        backgroundColor: colors.white
     }
 })
