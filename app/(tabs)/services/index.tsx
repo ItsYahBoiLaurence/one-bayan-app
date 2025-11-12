@@ -9,9 +9,9 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 export default function Services() {
   const eservices = [
     { label: "Business Permit", icon: "phone" },
-    { label: "Real Property Tax", icon: "phone" },
-    { label: "Civil Registry", icon: "phone" },
-    { label: "Zoninng Permits", icon: "phone" },
+    { label: "Real Property Tax", icon: "home-outline" },
+    { label: "Civil Registry", icon: "account-multiple" },
+    { label: "Zoninng Permits", icon: "map" },
   ];
 
   const services = [
@@ -52,7 +52,7 @@ export default function Services() {
             <Pressable style={[styles.card]} key={`${eservice.label}-${i}`}>
               <View
                 style={[
-                  common.horizontalFlex,
+                  common.verticalFlex,
                   {
                     gap: spacing.xs,
                     alignItems: "center",
@@ -62,8 +62,22 @@ export default function Services() {
                   },
                 ]}
               >
-                <MaterialCommunityIcons name={eservice.icon as any} />
-                <Text>{eservice.label}</Text>
+                <MaterialCommunityIcons
+                  name={eservice.icon as any}
+                  size={typography.title}
+                  color={colors.royalBlue}
+                />
+                <Text
+                  style={[
+                    {
+                      fontSize: typography.subtitle,
+                      color: colors.royalBlue,
+                      fontWeight: "500",
+                    },
+                  ]}
+                >
+                  {eservice.label}
+                </Text>
               </View>
             </Pressable>
           ))}
@@ -75,7 +89,12 @@ export default function Services() {
         <View style={[common.verticalFlex]}>
           {services.map((service, i) => (
             <Pressable
-              style={[{ backgroundColor: "white", borderRadius: spacing.md }]}
+              style={[
+                {
+                  backgroundColor: "white",
+                  borderRadius: spacing.md,
+                },
+              ]}
               key={`${service.label}-${i}`}
             >
               <View

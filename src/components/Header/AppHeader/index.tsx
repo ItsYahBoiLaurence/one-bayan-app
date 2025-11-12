@@ -9,7 +9,7 @@ export function AppHeader() {
     <View style={styles.container}>
       <Avatar.Image
         size={40}
-        source={require("../../../../assets/images/adaptive-icon.png")}
+        source={require("../../../../assets/images/logo.png")}
         style={{ backgroundColor: colors.azure }}
       />
       <View>
